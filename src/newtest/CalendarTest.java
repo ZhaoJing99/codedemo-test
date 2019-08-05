@@ -12,7 +12,8 @@ public class CalendarTest {
 
         int today = d.get(Calendar.DAY_OF_MONTH);
         int month = d.get(Calendar.MONTH);
-
+        int x = d.getActualMaximum(Calendar.DAY_OF_MONTH) ;
+        System.out.println(x);
         //set d to start date of the month
 
         d.set(Calendar.DAY_OF_MONTH,1);
