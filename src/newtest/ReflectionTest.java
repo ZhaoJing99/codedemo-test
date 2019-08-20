@@ -26,7 +26,12 @@ public class ReflectionTest {
 
             System.out.print("\n{\n");
             printConstructors(cl);
+            System.out.println();
+            printMethods(cl);
+            System.out.println();
+            printFields(cl);
             System.out.println("}");
+
         }
         catch (ClassNotFoundException e){
             e.printStackTrace();
@@ -55,12 +60,35 @@ public static void printConstructors(Class cl){
     }
 }
 
-/*public static void printMethods(Class cl) {
+public static void printMethods(Class cl) {
 
+    Method[] method = cl.getDeclaredMethods();
+
+    for (Method m:method)
+    {
+        Class retType = m.getReturnType();
+        String name = m.getName();
+        System.out.print(" " + Modifier.toString(m.getModifiers()));
+        System.out.print(" "+name+"(");
+
+        Class[] paramTypes = m.getParameterTypes();
+        for (int j = 0;j < paramTypes.length;j++){
+            if(j>0) System.out.print(". ");
+            System.out.print(paramTypes[j].getName());
+        }
+        System.out.println(");");
+    }
 }
 
 public static void printFields(Class cl){
+    Field[] fields = cl.getDeclaredFields();
 
+    for (Field n :fields){
+        Class type = n.getType();
+        String name = n.getName();
+        System.out.print(" " + Modifier.toString(n.getModifiers()));
+        System.out.println(" "+type.getName()+name+";");
+    }
 }
-**/
+
 }
